@@ -1,29 +1,34 @@
-let name = document.getElementById('name');
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-let confirmPassword = document.getElementById('confirmPassword');
-let submitBtn = document.getElementById('submitBtn');
+var name = document.getElementById('name');
+var email = document.getElementById('email');
+var password = document.getElementById('password');
+var confirmPassword = document.getElementById('confirmPassword');
+var submitBtn = document.getElementById('submitBtn');
 
-let nameError = document.getElementById('nameError');
-let emailError = document.getElementById('emailError');
-let passwordError = document.getElementById('passwordError');
-let confirmPasswordError = document.getElementById('confirmPasswordError');
+var nameError = document.getElementById('nameError');
+var emailError = document.getElementById('emailError');
+var passwordError = document.getElementById('passwordError');
+var confirmPasswordError = document.getElementById('confirmPasswordError');
 
-let cleanName = false;
-let cleanEmail = false;
-let cleanPassword = false;
-let cleanConfirmPassword = false;
+var cleanName = false;
+var cleanEmail = false;
+var cleanPassword = false;
+var cleanConfirmPassword = false;
 
 function validateName() {
-    if (name.value.length < 4) {
+    var nameValue = document.getElementById('name').value;
+    if (nameValue.length < 4) {
         nameError.textContent = 'Your name must have at least 4 characters';
         nameError.style.visibility = 'visible';
-        name.classList.add('wrong-input');
-        name.classList.remove('valid-input');
+
+        name.className = 'valid-input';
+        //name.classList.add('wrong-input');
+        //name.classList.remove('valid-input');
+        name.className = 'valid-input';
         cleanName = false;
     } else {
         nameError.style.visibility = 'hidden';
-        name.classList.add('valid-input');
+        name.className = 'valid-input';
+        //name.classList.add('valid-input');
         cleanName = true;
     }
     validate()
@@ -81,6 +86,11 @@ function validateConfirmPassword() {
     }
     validate()
 }
+console.log(cleanEmail);
+console.log(cleanName);
+console.log(cleanPassword);
+
+
 
 function validate() {
     if (cleanName == true && cleanEmail == true && cleanPassword == true && cleanConfirmPassword == true) {

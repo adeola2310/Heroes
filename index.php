@@ -1,3 +1,5 @@
+<?php require_once('includes/session.php');?>
+<?php require_once('includes/functions.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +26,42 @@
 
                 </div>
                 <div class="login-form-box">
-                    <form class="login-form" name="v-form"  method="post">
+                    <?php
+
+                    if (isset($_REQUEST['login'])) {
+                        $email = $_POST['email'];
+                        $pass = $_POST['password'];
+                        $password = md5($pass);
+
+                        $json_data = file_get_contents('data.json');
+                        $data = json_decode($json_data,true); //adding true turns it into an assoociative array
+
+                        foreach ($data as $key => $value) {
+                            if ($value['email'] == $email && $value['password'] == $password){
+                                $_SESSION['email'] = $value['email'];
+                                $_SESSION['name'] = $value['name'];
+
+                                redirect_to("home.php");
+                            }
+                            else{
+                                $message = "Incorrect Login";
+                                //redirect_to('index.php');
+                            }
+
+
+                        }
+
+
+                    } else{
+                        if (isset($_GET['logout']) && $_GET['logout'] == 1){
+                            $message = "<p>You are now Logged out</p>";
+
+                        }
+                        //redirect_to('index.php');
+                    }
+
+                    ?>
+                    <form class="login-form" name="v-form"  method="post" action="index.php">
 
                         <h4 class="form-heading">LOG IN</h4>
 
@@ -32,10 +69,9 @@
                         <input type="text" placeholder="Email" name="email" id="email" onchange="validateEmail()"><i class="fa fa-envelope" aria-hidden="true"></i>
                         <div id="email_error" class="val_error"></div>
                         <br>
-                        <input type="password" placeholder="Password" name="password" id="password" onchange="validatePassword()"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-                        <div id="password_error" class="val_error"></div>
+                        <input type="password" placeholder="Password" name="password" id="password" onkeyup="validatePassword()"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                        <div id="password_error" class="val_error"><?php if (!empty($message)) echo $message; ?></div>
                         <br>
-
 
                         <input type="submit" name="login" class="log" id="login" value="LOG IN" disabled>
 

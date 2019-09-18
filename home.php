@@ -1,3 +1,7 @@
+<?php require_once ('includes/session.php');?>
+<?php require_once ('includes/functions.php');?>
+<?php confirm_logged_in();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@
                 </div>
 
                 <div class="home-text">
-                <h5 style="padding-bottom:0.5em">Hi! <?php $name = 'USERNAME';echo $name; ?></h5>
+                <h5 style="padding-bottom:0.5em">Hi! <?php echo $_SESSION['name']; ?></h5>
                 
                     <h4 style="padding-bottom:0.5em">Welcome to Team Heroes</h4>
                     
@@ -36,18 +40,16 @@
                     <p>Are you ready for the adventure that lies ahead?</p>
                 </div>
 
-
-                
             </div>
 
         </div>
 
         <div class="box-footer" >
-            <div class="box-footer-text" style="display:none">
-                <h4> Dont have an Account yet?</h4>
-                <span>A New User? Register with us...</span>
+            <div class="box-footer-text" style="display:block">
+                <h4> &nbsp;</h4>
+                <span>&nbsp;</span>
                 <div>
-                    <a href="signup.php">
+                    <a href="logout.php">
                         <button>LOGOUT</button>
                     </a>
                 </div>

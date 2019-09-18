@@ -1,3 +1,5 @@
+<?php require_once('includes/session.php');?>
+<?php require_once('includes/functions.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,25 +26,66 @@
 
                 </div>
                 <div class="login-form-box">
-                    <form class="login-form" name="v-form" method="post" action="php/register.php">
+                    <?php
+                    if (isset($_REQUEST['signup'])) {
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $pass = $_POST['password'];
+                        $password = md5($pass);
+
+                        $new_data=array(
+                            "name"=>$name,
+                            "email"=>$email,
+                            "password"=>$password
+                        );
+
+                        $json_data = file_get_contents('data.json');
+                        $data = json_decode($json_data,true); //adding true turns it into an assoociative array
+
+
+                        foreach ($data as $key => $value) {
+                            if ($email == $value['email']){
+                                $message = "<p>Sorry Email already Exist</p>";
+                                break;
+                                //redirect_to("signup.php");
+                            }
+                        }
+
+                        array_push($data,$new_data);
+                                $encoded_pushed_data = json_encode($data,JSON_PRETTY_PRINT);
+
+                                $new_json_data = file_put_contents('data.json',$encoded_pushed_data);
+
+                                $_SESSION['email'] = $email;
+                                $_SESSION['name'] = $name;
+                                redirect_to("home.php");
+
+
+                    }
+
+                    ?>
+                    <form class="login-form" name="v-form" method="post" action="signup.php">
 
                         <h4 class="form-heading">SIGN UP</h4>
 
 
                         <input type="text" placeholder="Full Name" name="name" id="name" onchange="validateName()"><i class="fa fa-user fa-sm " aria-hidden="true"></i>
-
-
-                        <div id="nameError" class="error" style="display: hidden;">&nbsp;</div>
+                        <div id="nameError" class="error" style="visibility: hidden">&nbsp;</div>
 
                         <input type="text" placeholder="Email" name="email" id="email" onchange="validateEmail()"><i class="fa fa-envelope fa-sm " aria-hidden="true"></i>
                         <div id="emailError" class="error" style="visibility: hidden;">&nbsp;</div>
 
-                        <input type="password" placeholder="password" name="password" id="password" onkeyup="validatePassword()"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                        <input type="password" placeholder="Password" name="password" id="password" onkeyup="validatePassword()"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>
                         <div id="passwordError" class="error" style="visibility: hidden;">&nbsp;</div>
 
                         <input type="password" placeholder="Confirm Password" name="password" id="confirmPassword" onkeyup="validateConfirmPassword()"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-                        <div id="confirmPasswordError" class="error" style="visibility: hidden;">&nbsp;</div>
+                        <?php if (empty($message)){
+                            echo "<div id=\"confirmPasswordError\" class=\"error\" style=\"visibility: hidden;\">&nbsp;</div>";
+                            }
+                            else echo "<div class='error'>$message</div>";
+                        ?>
                         <br>
+
 
                         <div class="check">
                             <div class="row">
