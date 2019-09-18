@@ -81,7 +81,7 @@ html {
     background-color: #F9F9F9;
     margin: -5% auto 0%;
     width: 450px;
-    height: 400px;
+    height: 430px;
     border-radius: 2px;
     /*position: absolute;
     left: 7%;
@@ -130,6 +130,8 @@ input[type="password"] {
     border-bottom: 1px solid #CCCCCC;
 }
 
+
+/*
 .check {
     margin-top: 50px;
     margin-left: 35px;
@@ -138,6 +140,11 @@ input[type="password"] {
 .check p {
     font-size: 16px;
     color: #CCCCCC;
+}*/
+
+.log:disabled {
+    background: #E8716D;
+    cursor: not-allowed;
 }
 
 .log {
@@ -201,14 +208,18 @@ footer {
 
 /* Validation styles */
 
-.log:disabled {
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+button[type="button"]:disabled {
     cursor: not-allowed;
     background: #E8716D !important;
 }
 
-.val_error p {
-    color: red !important;
-    font-size: 12px;
+.disabled {
+    background: #E8716D !important;
 }
 
 .wrong-input {
@@ -223,36 +234,7 @@ footer {
     .box-footer-text {
         padding: 0 5%;
     }
-}
-
-
-/** Home Page Style**/
-
-.home-img {
-    padding: 8%;
-    width: 50%;
-    margin: auto;
-}
-
-.home-img img {
-    width: 100%;
-}
-
-.home-text {
-    width: 80%;
-    text-align: center;
-    margin: 0 auto;
-    color: #6F9AB2;
-}
-
-.home-box {
-    display: block;
-    background-color: #F9F9F9;
-    margin: -5% auto 0%;
-    width: 450px;
-    height: 450px;
-    border-radius: 2px;
-    /*position: absolute;
-    left: 7%;
-    top: -10%;*/
+    .login-box {
+        min-height: 500px;
+    }
 }
