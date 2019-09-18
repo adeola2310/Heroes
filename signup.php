@@ -85,16 +85,8 @@
                             else echo "<div class='error'>$message</div>";
                         ?>
                         <br>
+                        <input type="submit" name="signup" class="log" id="submitBtn" value="SIGN UP" disabled>
 
-
-                        <div class="check">
-                            <div class="row">
-                                <div class="col-md-6">
-
-                                    <input type="submit" name="signup" class="log" id="submitBtn" value="SIGN UP" disabled>
-                                </div>
-                            </div>
-                        </div>
                     </form>
 
                 </div>

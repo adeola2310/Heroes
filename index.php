@@ -44,7 +44,7 @@
                                 redirect_to("home.php");
                             }
                             else{
-                                $message = "Incorrect Login";
+                                $message = "<p>Incorrect Login</p";
                                 //redirect_to('index.php');
                             }
 
