@@ -4,7 +4,7 @@ http://hngteamheroes.epizy.com
 
 Lucid Link: https://lucid.blog/leahcimzil/post/team-heroes-task-one-tutorial-ccc
 
-This is a Login, Signup Authentication Website design by HNG internship team of 10 "Team Heroes" .
+This is a Login, Signup Authentication Website designed by HNG internship team of 10 "Team Heroes" .
 
 <b>Contributors:</b>
 Backend
@@ -23,4 +23,4 @@ Design
 Eme Daniel Emenike [@danielEme] 
 Habeeb Awoyemi[@habeeb_ability]
 
-NB:[x]: x = Their slack usernames
+<b>NB:</b> [x] where x = Their slack usernames
